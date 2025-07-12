@@ -16,7 +16,7 @@ const ShopContextProvider = (props) => {
   const [selectedSizeMap, setSelectedSizeMap] = useState({});
 
   useEffect(() => {
-    fetch("https://e-commerce-79is.vercel.app/allproducts")
+    fetch("https://e-commerce-b5yu.onrender.com/allproducts")
       .then((res) => res.json())
       .then((data) => {
         console.log("Products fetched:", data);
@@ -26,7 +26,7 @@ const ShopContextProvider = (props) => {
         const authToken = localStorage.getItem("auth-token");
 
         if (authToken) {
-          fetch("https://e-commerce-79is.vercel.app/getcart", {
+          fetch("https://e-commerce-b5yu.onrender.com/getcart", {
             method: "POST",
             headers: {
               Accept: "application/form-data",
@@ -69,7 +69,7 @@ const ShopContextProvider = (props) => {
 
     const authToken = localStorage.getItem("auth-token");
     if (authToken) {
-      fetch("https://e-commerce-79is.vercel.app/addtocart", {
+      fetch("https://e-commerce-b5yu.onrender.com/addtocart", {
         method: "POST",
         headers: {
           Accept: "application/form-data",
@@ -91,7 +91,7 @@ const ShopContextProvider = (props) => {
 
     const authToken = localStorage.getItem("auth-token");
     if (authToken) {
-      fetch("https://e-commerce-79is.vercel.app/removefromcart", {
+      fetch("https://e-commerce-b5yu.onrender.com/removefromcart", {
         method: "POST",
         headers: {
           Accept: "application/form-data",

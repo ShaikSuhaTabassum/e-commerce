@@ -8,7 +8,7 @@ const NewCollections = () => {
   useEffect(() => {
     const fetchNewCollections = async () => {
       try {
-        const response = await fetch('https://e-commerce-79is.vercel.app/newcollections'); // Adjust based on your backend port
+        const response = await fetch('https://e-commerce-b5yu.onrender.com/newcollections'); // Adjust based on your backend port
         const data = await response.json();
         setNew_collection(data);
       } catch (error) {
