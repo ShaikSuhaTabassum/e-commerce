@@ -305,7 +305,7 @@ const LoginSignup = () => {
 
   const login = async () => {
     try {
-      const response = await fetch('http://localhost:4000/login', {
+      const response = await fetch('https://e-commerce-79is.vercel.app/login', {
         method: 'POST',
         headers: {
           'Accept': 'application/json',

@@ -20,7 +20,7 @@ const CartItems = () => {
     clearCart();
 
     if (localStorage.getItem('auth-token')) {
-      fetch('http://localhost:4000/clearcart', {
+      fetch('https://e-commerce-79is.vercel.app/clearcart', {
         method: 'POST',
         headers: {
           'auth-token': localStorage.getItem('auth-token'),

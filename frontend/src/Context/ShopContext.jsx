@@ -16,7 +16,7 @@ const ShopContextProvider = (props) => {
   const [selectedSizeMap, setSelectedSizeMap] = useState({});
 
   useEffect(() => {
-    fetch("http://localhost:4000/allproducts")
+    fetch("https://e-commerce-79is.vercel.app/allproducts")
       .then((res) => res.json())
       .then((data) => {
         console.log("Products fetched:", data);
@@ -26,7 +26,7 @@ const ShopContextProvider = (props) => {
         const authToken = localStorage.getItem("auth-token");
 
         if (authToken) {
-          fetch("http://localhost:4000/getcart", {
+          fetch("https://e-commerce-79is.vercel.app/getcart", {
             method: "POST",
             headers: {
               Accept: "application/form-data",
@@ -69,7 +69,7 @@ const ShopContextProvider = (props) => {
 
     const authToken = localStorage.getItem("auth-token");
     if (authToken) {
-      fetch("http://localhost:4000/addtocart", {
+      fetch("https://e-commerce-79is.vercel.app/addtocart", {
         method: "POST",
         headers: {
           Accept: "application/form-data",
@@ -91,7 +91,7 @@ const ShopContextProvider = (props) => {
 
     const authToken = localStorage.getItem("auth-token");
     if (authToken) {
-      fetch("http://localhost:4000/removefromcart", {
+      fetch("https://e-commerce-79is.vercel.app/removefromcart", {
         method: "POST",
         headers: {
           Accept: "application/form-data",
