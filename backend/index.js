@@ -46,7 +46,7 @@ app.post("/upload", upload.single('product'), (req, res) => {
 
   res.json({
     success: true,
-    image_url: `https://e-commerce-b5yu.onrender.com:${port}/images/${req.file.filename}`
+    image_url: `https://e-commerce-o99z.onrender.com:${port}/images/${req.file.filename}`
   });
 });
 
