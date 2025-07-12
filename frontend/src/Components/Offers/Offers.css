@@ -1,0 +1,155 @@
+.offers {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 60px;
+  margin-top: 120px;
+  background: linear-gradient(to right, #ffe3ec, #f8bbd0);
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  gap: 50px;
+  border: 2px solid gray;
+  position: relative;
+  z-index: 1;
+  flex-wrap: wrap;
+}
+
+/* Left Section */
+.offers-left {
+  flex: 1;
+  min-width: 300px;
+}
+
+.offers-left h2 {
+  font-size: 2.8rem;
+  font-weight: bold;
+  color: #880e4f;
+  margin-bottom: 10px;
+}
+
+.offers-left p {
+  font-size: 1.2rem;
+  color: #444;
+  margin-bottom: 25px;
+}
+
+.offers-left button {
+  padding: 12px 30px;
+  background-color: #ec407a;
+  border: none;
+  border-radius: 30px;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.offers-left button:hover {
+  background-color: #d81b60;
+  transform: scale(1.05);
+}
+
+/* Right Section */
+.offers-right {
+  flex: 1;
+  text-align: center;
+  min-width: 300px;
+}
+
+.offers-right img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Responsive Design --- */
+
+/* Large Tablets & Small Desktops */
+@media (max-width: 1024px) {
+  .offers {
+    padding: 30px 40px;
+    margin-top: 80px;
+    gap: 40px;
+  }
+
+  .offers-left h2 {
+    font-size: 2rem;
+  }
+
+  .offers-left p {
+    font-size: 1rem;
+  }
+
+  .offers-left button {
+    width: 180px;
+    height: 45px;
+    font-size: 0.9rem;
+  }
+
+  .offers-right img {
+    width: 250px;
+  }
+}
+
+/* Tablets */
+@media (max-width: 768px) {
+  .offers {
+    flex-direction: column;
+    text-align: center;
+    padding: 30px 20px;
+  }
+
+  .offers-left, .offers-right {
+    flex: unset;
+    width: 100%;
+  }
+
+  .offers-left h2 {
+    font-size: 1.8rem;
+  }
+
+  .offers-left p {
+    font-size: 1rem;
+  }
+
+  .offers-left button {
+    width: 160px;
+    height: 40px;
+    font-size: 0.9rem;
+  }
+
+  .offers-right img {
+    width: 220px;
+    margin-top: 20px;
+  }
+}
+
+/* Phones */
+@media (max-width: 500px) {
+  .offers {
+    padding: 20px;
+    margin-top: 60px;
+    gap: 20px;
+  }
+
+  .offers-left h2 {
+    font-size: 1.2rem;
+  }
+
+  .offers-left p {
+    font-size: 0.8rem;
+  }
+
+  .offers-left button {
+    width: 120px;
+    height: 32px;
+    font-size: 0.75rem;
+    margin-top: 12px;
+  }
+
+  .offers-right img {
+    width: 140px;
+  }
+}

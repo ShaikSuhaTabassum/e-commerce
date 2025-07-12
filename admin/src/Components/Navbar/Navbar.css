@@ -1,0 +1,42 @@
+/* Navbar.css */
+
+.Navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 60px;
+  background: linear-gradient(90deg, #ffffff, #f7f7f7);
+  box-shadow: 0 1px 3px  -2px rgba(0, 0, 0, 0.08);
+  margin-bottom: 1px;
+}
+
+.nav-logo {
+  width: 200px;
+  transition: transform 0.3s ease;
+}
+
+.nav-logo:hover {
+  transform: scale(1.05);
+}
+
+.nav-profile {
+  width: 75px;
+    transition: all 0.3s ease;
+  cursor: pointer;
+}
+@media(max-width:800px)
+{
+    .navbar{
+        padding: 15px 30px ;
+    }
+    .nav-logo{
+        width: 150px;
+    }
+    .nav-profile{
+        width: 60px;
+    }
+}
+.nav-profile:hover {
+  border-color: #333;
+  transform: rotate(5deg) scale(1.05);
+}

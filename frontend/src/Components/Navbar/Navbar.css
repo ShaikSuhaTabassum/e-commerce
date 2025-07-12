@@ -1,0 +1,241 @@
+/* Main Navbar */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 50px;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  font-family: 'Poppins', sans-serif;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 3px solid #e91e63;
+}
+
+/* Logo */
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-logo-img {
+  width: 60px;
+  height: auto;
+  object-fit: contain;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.nav-logo-img:hover {
+  transform: scale(1.1);
+}
+
+.logo-text {
+  font-size: 28px;
+  font-weight: 700;
+  color: #e91e63;
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+/* Navigation Menu */
+.nav-menu {
+  list-style: none;
+  display: flex;
+  gap: 36px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-menu li {
+  font-size: 20px;
+  font-weight: 500;
+  position: relative;
+  cursor: pointer;
+  color: #222;
+  transition: all 0.3s ease;
+}
+
+.nav-menu li a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s ease;
+}
+
+.nav-menu li::after {
+  content: "";
+  display: block;
+  height: 2px;
+  width: 0;
+  background: #e91e63;
+  transition: width 0.3s ease;
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+}
+
+.nav-menu li:hover::after {
+  width: 100%;
+}
+
+.nav-menu li:hover a {
+  color: #e91e63;
+}
+
+/* Right Section */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+/* Login Button (Pink) */
+.login-btn {
+  padding: 10px 20px;
+  background-color: #e91e63;
+  color: white !important;
+  font-weight: 600;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  font-size: 16px;
+}
+
+.login-btn:hover {
+  background-color: #d81b60;
+  box-shadow: 0 4px 10px rgba(233, 30, 99, 0.3);
+}
+
+/* Logout Button (Same Pink Style) */
+.logout-btn {
+  padding: 10px 20px;
+  background-color: #e91e63;
+  color: white;
+  font-weight: 600;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  font-size: 16px;
+}
+
+.logout-btn:hover {
+  background-color: #d81b60;
+  box-shadow: 0 4px 10px rgba(233, 30, 99, 0.3);
+}
+
+/* Cart Icon */
+.cart-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.cart-icon {
+  color: black;
+  font-size: 24px;
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.cart-icon:hover {
+  transform: scale(1.15);
+  color: #d81b60;
+}
+
+.nav-cart-count {
+  position: absolute;
+  top: -6px;
+  right: -10px;
+  background: #e91e63;
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 7px;
+  border-radius: 50%;
+  line-height: 1;
+  text-align: center;
+  box-shadow: 0 0 0 2px white;
+}
+
+/* Dropdown Icon (Mobile) */
+.nav-dropdown {
+  display: none;
+  width: 32px;
+  height: auto;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.nav-dropdown.open {
+  transform: rotate(90deg);
+}
+
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  .nav-menu {
+    gap: 24px;
+  }
+  .login-btn {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+}
+
+@media (max-width: 800px) {
+  .nav-dropdown {
+    display: block;
+  }
+
+  .nav-menu {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    padding: 20px 0;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.06);
+    z-index: 999;
+  }
+
+  .nav-menu-visible {
+    display: flex !important;
+  }
+
+  .nav-right {
+    gap: 20px;
+  }
+
+  .login-btn {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 500px) {
+  .navbar {
+    padding: 12px 20px;
+  }
+
+  .nav-logo {
+    transform: scale(0.9);
+  }
+
+  .logo-text {
+    font-size: 22px;
+  }
+
+  .nav-right {
+    transform: scale(0.9);
+  }
+
+  .cart-icon {
+    font-size: 20px;
+  }
+}

@@ -1,0 +1,21 @@
+
+.Admin {
+  display: flex;
+  /* height: 100vh;
+  width: 100%;
+  background-color: #fafafa;
+  font-family: 'Segoe UI', sans-serif; */
+}
+
+.Admin .main-content {
+  flex: 1;
+  padding: 30px;
+  margin-left: 260px; 
+  overflow-y: auto;
+}
+
+@media(max-width:800px){
+    .Admin{
+        flex-direction: column;
+    }
+}

@@ -1,0 +1,78 @@
+.addproduct {
+  padding: 40px;
+  background: #ffffff;
+  border-radius: 12px;
+  margin: 30px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  max-width: 700px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.addproduct-itemfield {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.addproduct-itemfield p {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.addproduct-itemfield input,
+.addproduct-itemfield select {
+  padding: 12px 16px;
+  font-size: 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  outline: none;
+  transition: 0.2s;
+  background-color: #f9f9f9;
+}
+
+.addproduct-itemfield input:focus,
+.addproduct-itemfield select:focus {
+  border-color: #007bff;
+  background-color: #fff;
+}
+
+.addproduct-price {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.addproduct-price .addproduct-itemfield {
+  flex: 1;
+}
+
+/* Optional: Responsive for small screens */
+@media (max-width: 768px) {
+  .addproduct {
+    width: autoakg ;
+    padding: 20px;
+    margin: 20px;
+  }
+
+  .addproduct-price {
+    flex-direction: column;
+  }
+}
+
+.addproduct-thumbnail-img {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  border: 2px dashed #ccc;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.addproduct-thumbnail-img:hover {
+  border-color: #007bff;
+  transform: scale(1.05);
+}
