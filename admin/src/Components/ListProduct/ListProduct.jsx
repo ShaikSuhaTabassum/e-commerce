@@ -20,7 +20,7 @@ const ListProduct = () => {
     if (!confirmDelete) return;
 
     try {
-      const res = await fetch("http://localhost:4000/deleteproduct", {
+      const res = await fetch("https://e-commerce-b5yu.onrender.com/deleteproduct", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
