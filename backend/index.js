@@ -1,7 +1,4 @@
-// command:node index.js for backend
-// npm run dev for admin pannel
-// npm start for frontend
-
+// 
 const port = 4000;
 const express = require("express");
 const app = express();
@@ -10,26 +7,31 @@ const jwt = require("jsonwebtoken");
 const multer = require("multer");
 const path = require("path");
 const cors = require("cors");
-const { type } = require("os");
-
 const bcrypt = require("bcrypt");
-app.use(express.json());
-app.use(cors());
 
-//  MongoDB connection
+app.use(express.json());
+
+// ✅ Allow CORS for all frontend origins (localhost:5173, Render, etc.)
+app.use(cors({
+  origin: "*",
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
+
+// ✅ MongoDB connection
 mongoose.connect("mongodb+srv://suhatabassum0786:Suha7868@cluster0.4hoyc6f.mongodb.net/")
   .then(() => console.log("MongoDB Connected"))
   .catch((err) => console.error("MongoDB connection error:", err));
 
-// Test Route
+// ✅ Test route
 app.get("/", (req, res) => {
   res.send("Express App is Running");
 });
 
-// Serve uploaded images
+// ✅ Serve static images from 'upload/images' folder
 app.use('/images', express.static(path.join(__dirname, 'upload/images')));
 
-// Image upload config
+// ✅ Image Upload Config
 const storage = multer.diskStorage({
   destination: './upload/images',
   filename: (req, file, cb) => {
@@ -38,19 +40,22 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 
-// Image upload route
+// ✅ Image upload endpoint
 app.post("/upload", upload.single('product'), (req, res) => {
   if (!req.file) {
     return res.status(400).json({ success: false, error: "No file uploaded" });
   }
 
+  // ✅ This constructs full URL dynamically
+  const imageURL = `${req.protocol}://${req.get("host")}/images/${req.file.filename}`;
+
   res.json({
     success: true,
-    image_url: `${req.protocol}://${req.get("host")}/images/${req.file.filename}`
+    image_url: imageURL
   });
 });
 
-// Product schema
+// ✅ Product Schema & Model
 const Product = mongoose.model("Product", {
   id: { type: Number, required: true },
   name: { type: String, required: true },
@@ -62,10 +67,10 @@ const Product = mongoose.model("Product", {
   available: { type: Boolean, default: true },
 });
 
-// Add product
+// ✅ Add Product Endpoint
 app.post('/addproduct', async (req, res) => {
-  let products = await Product.find({});
-  let id = products.length > 0 ? products[products.length - 1].id + 1 : 1;
+  const products = await Product.find({});
+  const id = products.length > 0 ? products[products.length - 1].id + 1 : 1;
 
   try {
     const product = new Product({
@@ -87,7 +92,7 @@ app.post('/addproduct', async (req, res) => {
   }
 });
 
-// Delete product
+// ✅ Delete Product
 app.post('/deleteproduct', async (req, res) => {
   const { id } = req.body;
 
@@ -104,7 +109,7 @@ app.post('/deleteproduct', async (req, res) => {
   }
 });
 
-// Get all products
+// ✅ Get All Products
 app.get('/allproducts', async (req, res) => {
   try {
     const products = await Product.find({});
@@ -114,7 +119,7 @@ app.get('/allproducts', async (req, res) => {
   }
 });
 
-// User schema
+// ✅ User Schema & Model
 const Users = mongoose.model("Users", {
   name: { type: String },
   email: { type: String, unique: true },
@@ -123,10 +128,9 @@ const Users = mongoose.model("Users", {
   date: { type: Date, default: Date.now },
 });
 
-// Signup route
+// ✅ Signup
 app.post('/signup', async (req, res) => {
   const existingUser = await Users.findOne({ email: req.body.email });
-
   if (existingUser) {
     return res.status(400).json({
       success: false,
@@ -148,104 +152,87 @@ app.post('/signup', async (req, res) => {
 
   await user.save();
 
-  const data = { user: { id: user.id } };
-  const token = jwt.sign(data, 'secret_ecom');
-  console.log(token)
-
+  const token = jwt.sign({ user: { id: user.id } }, 'secret_ecom');
   res.json({ success: true, token });
 });
 
-// Login route
+// ✅ Login
 app.post('/login', async (req, res) => {
   const user = await Users.findOne({ email: req.body.email });
 
-  if (user) {
-    const isPasswordMatch = req.body.password === user.password;
-    if (isPasswordMatch) {
-      const data = { user: { id: user.id } };
-      const token = jwt.sign(data, 'secret_ecom');
-      return res.json({ success: true, token });
-    } else {
-      return res.json({ success: false, error: "Wrong Password" });
-    }
-  } else {
-    return res.json({ success: false, error: "Email not found" });
+  if (user && req.body.password === user.password) {
+    const token = jwt.sign({ user: { id: user.id } }, 'secret_ecom');
+    return res.json({ success: true, token });
   }
+
+  return res.json({ success: false, error: "Invalid credentials" });
 });
 
-// creating an endpoint for newcollection data
+// ✅ New Collections
 app.get('/newcollections', async (req, res) => {
-  let products = await Product.find({});
-  let newcollection = products.slice(1).slice(-8);
-  console.log('New Collectons Fetched')
+  const products = await Product.find({});
+  const newcollection = products.slice(-8);
   res.send(newcollection);
 });
 
-//creating an endpoint for popular in women section
+// ✅ Popular in Women
 app.get('/popularinwomen', async (req, res) => {
   try {
     const products = await Product.find({
       category: { $regex: /^women$/i }
     });
 
-    console.log("Found products count:", products.length);
-
     const popular_in_women = products.slice(0, 4);
     res.json(popular_in_women);
   } catch (err) {
-    console.error("Error fetching popular in women:", err);
     res.status(500).json({ error: "Internal server error" });
   }
 });
 
-//creating middleware to fetch user
+// ✅ Middleware to fetch user
 const fetchUser = async (req, res, next) => {
   const token = req.header('auth-token');
   if (!token) {
-    res.status(401).send({ errors: 'Please authenticate using valid token ' });
-  } else {
-    try {
-      const data = jwt.verify(token, 'secret_ecom');
-      req.user = data.user;
-      next();
-    } catch (error) {
-      res.status(401).send({ errors: 'please authenticate using a valid token' });
-    }
+    return res.status(401).send({ errors: 'Please authenticate using a valid token' });
+  }
+
+  try {
+    const data = jwt.verify(token, 'secret_ecom');
+    req.user = data.user;
+    next();
+  } catch (error) {
+    res.status(401).send({ errors: 'Invalid token' });
   }
 };
 
-// creating an endpoint for products in cartdata
+// ✅ Add to Cart
 app.post('/addtocart', fetchUser, async (req, res) => {
-  console.log("Added",req.body.itemId);  
-let userData= await Users.findOne({_id:req.user.id});
-userData.cartData[req.body.itemId]+=1;
-await Users.findOneAndUpdate({_id:req.user.id},{cartData:userData.cartData});
-res.send('Added')
+  const userData = await Users.findOne({ _id: req.user.id });
+  userData.cartData[req.body.itemId] += 1;
+  await Users.findOneAndUpdate({ _id: req.user.id }, { cartData: userData.cartData });
+  res.send('Added');
 });
 
-
-// creating an end point to emov product from cartdata
-app.post('/removefromcart',fetchUser,async(req,res)=>{
-  console.log("removed",req.body.itemId);
-let userData= await Users.findOne({_id:req.user.id});
-if(userData.cartData[req.body.itemId]>0)
-userData.cartData[req.body.itemId]-=1;
-await Users.findOneAndUpdate({_id:req.user.id},{cartData:userData.cartData});
-res.send('Removed')
+// ✅ Remove from Cart
+app.post('/removefromcart', fetchUser, async (req, res) => {
+  const userData = await Users.findOne({ _id: req.user.id });
+  if (userData.cartData[req.body.itemId] > 0) {
+    userData.cartData[req.body.itemId] -= 1;
+  }
+  await Users.findOneAndUpdate({ _id: req.user.id }, { cartData: userData.cartData });
+  res.send('Removed');
 });
 
-// craeting an end point to get cartdata
-app.post('/getcart',fetchUser,async(req,res)=>{
-  console.log('GetCart');
-  let userData=await Users.findOne({_id:req.user.id});
+// ✅ Get Cart
+app.post('/getcart', fetchUser, async (req, res) => {
+  const userData = await Users.findOne({ _id: req.user.id });
   res.json(userData.cartData);
-})
+});
 
-
-// Start server
+// ✅ Start the server
 app.listen(port, (error) => {
   if (!error) {
-    console.log(`Server Running on Port ${port}`);
+    console.log(`🚀 Server Running at http://localhost:${port}`);
   } else {
     console.error("Error starting server:", error);
   }
