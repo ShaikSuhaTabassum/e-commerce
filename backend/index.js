@@ -40,7 +40,8 @@ app.post("/upload", upload.single('product'), (req, res) => {
     return res.status(400).json({ success: false, error: "No file uploaded" });
   }
 
-  const imageURL = `${req.protocol}://${req.get("host")}/images/${req.file.filename}`;
+  // ✅ Use deployed URL directly instead of localhost
+  const imageURL = `https://e-commerce-prt4.onrender.com/images/${req.file.filename}`;
 
   res.json({
     success: true,
