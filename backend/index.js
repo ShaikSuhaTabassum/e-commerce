@@ -191,8 +191,9 @@ app.post('/addtocart', fetchUser, async (req, res) => {
   const userData = await Users.findOne({ _id: req.user.id });
   userData.cartData[req.body.itemId] += 1;
   await Users.findOneAndUpdate({ _id: req.user.id }, { cartData: userData.cartData });
-  res.send('Added');
+  res.json({ success: true, message: 'Item added to cart' }); // ✅ FIXED
 });
+
 
 app.post('/removefromcart', fetchUser, async (req, res) => {
   const userData = await Users.findOne({ _id: req.user.id });
@@ -200,7 +201,7 @@ app.post('/removefromcart', fetchUser, async (req, res) => {
     userData.cartData[req.body.itemId] -= 1;
   }
   await Users.findOneAndUpdate({ _id: req.user.id }, { cartData: userData.cartData });
-  res.send('Removed');
+  res.json({ success: true, message: 'Item removed from cart' }); // ✅ FIXED
 });
 
 app.post('/getcart', fetchUser, async (req, res) => {
