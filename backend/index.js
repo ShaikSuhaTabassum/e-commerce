@@ -1,4 +1,3 @@
-// 
 const port = 4000;
 const express = require("express");
 const app = express();
@@ -11,27 +10,23 @@ const bcrypt = require("bcrypt");
 
 app.use(express.json());
 
-// ✅ Allow CORS for all frontend origins (localhost:5173, Render, etc.)
 app.use(cors({
   origin: "*",
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));
 
-// ✅ MongoDB connection
+
 mongoose.connect("mongodb+srv://suhatabassum0786:Suha7868@cluster0.4hoyc6f.mongodb.net/")
   .then(() => console.log("MongoDB Connected"))
   .catch((err) => console.error("MongoDB connection error:", err));
 
-// ✅ Test route
 app.get("/", (req, res) => {
   res.send("Express App is Running");
 });
 
-// ✅ Serve static images from 'upload/images' folder
 app.use('/images', express.static(path.join(__dirname, 'upload/images')));
 
-// ✅ Image Upload Config
 const storage = multer.diskStorage({
   destination: './upload/images',
   filename: (req, file, cb) => {
@@ -40,13 +35,11 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 
-// ✅ Image upload endpoint
 app.post("/upload", upload.single('product'), (req, res) => {
   if (!req.file) {
     return res.status(400).json({ success: false, error: "No file uploaded" });
   }
 
-  // ✅ This constructs full URL dynamically
   const imageURL = `${req.protocol}://${req.get("host")}/images/${req.file.filename}`;
 
   res.json({
@@ -55,7 +48,6 @@ app.post("/upload", upload.single('product'), (req, res) => {
   });
 });
 
-// ✅ Product Schema & Model
 const Product = mongoose.model("Product", {
   id: { type: Number, required: true },
   name: { type: String, required: true },
@@ -67,7 +59,6 @@ const Product = mongoose.model("Product", {
   available: { type: Boolean, default: true },
 });
 
-// ✅ Add Product Endpoint
 app.post('/addproduct', async (req, res) => {
   const products = await Product.find({});
   const id = products.length > 0 ? products[products.length - 1].id + 1 : 1;
@@ -92,7 +83,6 @@ app.post('/addproduct', async (req, res) => {
   }
 });
 
-// ✅ Delete Product
 app.post('/deleteproduct', async (req, res) => {
   const { id } = req.body;
 
@@ -109,7 +99,6 @@ app.post('/deleteproduct', async (req, res) => {
   }
 });
 
-// ✅ Get All Products
 app.get('/allproducts', async (req, res) => {
   try {
     const products = await Product.find({});
@@ -119,7 +108,6 @@ app.get('/allproducts', async (req, res) => {
   }
 });
 
-// ✅ User Schema & Model
 const Users = mongoose.model("Users", {
   name: { type: String },
   email: { type: String, unique: true },
@@ -128,7 +116,6 @@ const Users = mongoose.model("Users", {
   date: { type: Date, default: Date.now },
 });
 
-// ✅ Signup
 app.post('/signup', async (req, res) => {
   const existingUser = await Users.findOne({ email: req.body.email });
   if (existingUser) {
@@ -156,7 +143,6 @@ app.post('/signup', async (req, res) => {
   res.json({ success: true, token });
 });
 
-// ✅ Login
 app.post('/login', async (req, res) => {
   const user = await Users.findOne({ email: req.body.email });
 
@@ -168,14 +154,12 @@ app.post('/login', async (req, res) => {
   return res.json({ success: false, error: "Invalid credentials" });
 });
 
-// ✅ New Collections
 app.get('/newcollections', async (req, res) => {
   const products = await Product.find({});
   const newcollection = products.slice(-8);
   res.send(newcollection);
 });
 
-// ✅ Popular in Women
 app.get('/popularinwomen', async (req, res) => {
   try {
     const products = await Product.find({
@@ -189,7 +173,6 @@ app.get('/popularinwomen', async (req, res) => {
   }
 });
 
-// ✅ Middleware to fetch user
 const fetchUser = async (req, res, next) => {
   const token = req.header('auth-token');
   if (!token) {
@@ -204,8 +187,6 @@ const fetchUser = async (req, res, next) => {
     res.status(401).send({ errors: 'Invalid token' });
   }
 };
-
-// ✅ Add to Cart
 app.post('/addtocart', fetchUser, async (req, res) => {
   const userData = await Users.findOne({ _id: req.user.id });
   userData.cartData[req.body.itemId] += 1;
@@ -213,7 +194,6 @@ app.post('/addtocart', fetchUser, async (req, res) => {
   res.send('Added');
 });
 
-// ✅ Remove from Cart
 app.post('/removefromcart', fetchUser, async (req, res) => {
   const userData = await Users.findOne({ _id: req.user.id });
   if (userData.cartData[req.body.itemId] > 0) {
@@ -223,16 +203,37 @@ app.post('/removefromcart', fetchUser, async (req, res) => {
   res.send('Removed');
 });
 
-// ✅ Get Cart
 app.post('/getcart', fetchUser, async (req, res) => {
   const userData = await Users.findOne({ _id: req.user.id });
   res.json(userData.cartData);
 });
+app.post('/clearcart', fetchUser, async (req, res) => {
+  try {
+    const userData = await Users.findOne({ _id: req.user.id });
 
-// ✅ Start the server
+    // Reset cartData to 0 for all product IDs
+    let newCart = {};
+    for (let i = 0; i < 300; i++) {
+      newCart[i] = 0;
+    }
+
+    userData.cartData = newCart;
+
+    await Users.findOneAndUpdate({ _id: req.user.id }, { cartData: newCart });
+
+    res.json({ success: true, message: "Cart cleared" });
+  } catch (err) {
+    console.error("Error clearing cart:", err);
+    res.status(500).json({ success: false, error: "Failed to clear cart" });
+  }
+});
+
+
+
+
 app.listen(port, (error) => {
   if (!error) {
-    console.log(`🚀 Server Running at http://localhost:${port}`);
+    console.log(`Server Running at http://localhost:${port}`);
   } else {
     console.error("Error starting server:", error);
   }
