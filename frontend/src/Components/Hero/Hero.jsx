@@ -29,11 +29,6 @@ const Hero = () => {
 <div className="bounce-wrapper">
   <span className="bounce-icon"><IoMdArrowDown fontSize="20px"/></span>
 </div>
-
-
-
-
-
         </div>
 
         <div className="hero-right">

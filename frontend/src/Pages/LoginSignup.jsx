@@ -19,7 +19,7 @@ const LoginSignup = () => {
 
   const login = async () => {
     try {
-      const response = await fetch('https://e-commerce-o99z.onrender.com/login', {
+      const response = await fetch('https://e-commerce-prt4.onrender.com/login', {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -47,7 +47,7 @@ const LoginSignup = () => {
 
   const signup = async () => {
     try {
-      const response = await fetch('hhttps://e-commerce-o99z.onrender.com/signup', {
+      const response = await fetch('https://e-commerce-prt4.onrender.com/signup', {
         method: 'POST',
         headers: {
           'Accept': 'application/json',

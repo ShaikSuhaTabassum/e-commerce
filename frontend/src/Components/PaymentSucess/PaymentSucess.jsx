@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom'
-import "./PaymentSucess.css";// ✅ Make sure the file is in the same folder
+import "./PaymentSucess.css";
 import successGif from './sucess.gif';
 
 const PaymentSuccess = () => {

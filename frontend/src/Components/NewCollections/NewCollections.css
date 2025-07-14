@@ -1,4 +1,4 @@
-.newcollections {
+/* .newcollections {
   padding: 60px 80px;
   background: #fff;
   font-family: 'Segoe UI', sans-serif;
@@ -6,8 +6,10 @@
 }
 
 .newcollections h1 {
-  font-size: 2.6rem;
-  font-weight: 400;
+  
+  font-size: 28px;
+  font-weight: bold;
+  text-align: center;
   color: #e91e63;
   margin-bottom: 10px;
 }
@@ -188,4 +190,35 @@
     justify-content: center;
     align-items: center;
   }
+} */
+
+/* NewCollections.css */
+
+.new-collections {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.new-collections h1 {
+  font-size: 28px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.new-collections hr {
+  width: 150px;
+  height: 3px;
+  background-color: #ff4081;
+  border: none;
+  margin: 10px auto 30px;
+  border-radius: 2px;
+}
+
+.collections {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
 }
