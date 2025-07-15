@@ -264,7 +264,7 @@ const path = require("path");
 const cors = require("cors");
 const bcrypt = require("bcrypt");
 
-const upload = require("./middlewares/multer"); // ✅ Cloudinary multer
+const upload = require("./middleware/multer"); // ✅ Cloudinary multer
 
 app.use(express.json());
 app.use(cors({
