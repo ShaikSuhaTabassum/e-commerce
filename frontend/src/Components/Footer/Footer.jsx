@@ -28,7 +28,7 @@ const Footer = () => {
         </div>
 
         <div className="footer-icons-containner">
-        <a href="www.linkedin.com/in/suha-tabassum-shaik-a92b152a5" target="__blank"><FaLinkedin/></a>
+        <a href="https://www.linkedin.com/in/suha-tabassum-shaik-a92b152a5/" target="__blank"><FaLinkedin/></a>
         </div>
         <div className="footer-cpyright">
             <hr/>
