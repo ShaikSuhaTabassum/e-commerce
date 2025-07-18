@@ -1,4 +1,4 @@
-.payment-success-container {
+/* .payment-success-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -40,4 +40,120 @@
 
 .back-btn:hover {
   background-color: #1b5e20;
+} */
+/* PaymentSuccess.css */
+
+/* Universal box-sizing for easier layout calculations */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+.payment-success-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; /* Use min-height to allow content to push it if needed */
+    text-align: center;
+    background-color: #f7fff8;
+    padding: 20px; /* Responsive padding */
+    font-family: 'Inter', sans-serif; /* Consistent font family */
+    color: #333;
+}
+
+.success-image {
+    width: 100px; /* Slightly larger default size for better visibility */
+    height: 100px;
+    margin-bottom: 25px; /* Increased margin */
+    animation: pulse 1.5s infinite ease-in-out; /* Add a subtle animation */
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.payment-success-container h2 {
+    font-size: 2.2rem; /* Using rem for better scalability */
+    color: #2e7d32; /* Green color for success */
+    margin-bottom: 15px; /* Adjusted margin */
+    line-height: 1.2;
+}
+
+.payment-success-container p {
+    font-size: 1.1rem; /* Using rem */
+    color: #555;
+    margin-bottom: 30px;
+    max-width: 400px; /* Limit paragraph width for readability */
+}
+
+.back-btn {
+    padding: 12px 28px; /* Larger padding for better touch target */
+    background-color: #2e7d32;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem; /* Larger font size */
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 10px rgba(46, 125, 50, 0.2); /* Subtle shadow */
+}
+
+.back-btn:hover {
+    background-color: #1b5e20; /* Darker green on hover */
+    transform: translateY(-2px); /* Lift effect */
+    box-shadow: 0 6px 15px rgba(46, 125, 50, 0.3);
+}
+
+/* Responsive adjustments */
+
+/* For screens up to 768px (tablets in portrait, larger phones) */
+@media (max-width: 768px) {
+    .payment-success-container {
+        padding: 15px;
+    }
+    .success-image {
+        width: 80px;
+        height: 80px;
+        margin-bottom: 20px;
+    }
+    .payment-success-container h2 {
+        font-size: 1.8rem;
+        margin-bottom: 10px;
+    }
+    .payment-success-container p {
+        font-size: 1rem;
+        margin-bottom: 25px;
+        max-width: 300px;
+    }
+    .back-btn {
+        padding: 10px 24px;
+        font-size: 1rem;
+    }
+}
+
+/* For screens up to 500px (mobile phones) */
+@media (max-width: 500px) {
+    .payment-success-container {
+        padding: 10px;
+    }
+    .success-image {
+        width: 70px;
+        height: 70px;
+        margin-bottom: 15px;
+    }
+    .payment-success-container h2 {
+        font-size: 1.5rem;
+        margin-bottom: 8px;
+    }
+    .payment-success-container p {
+        font-size: 0.9rem;
+        margin-bottom: 20px;
+        max-width: 90%; /* Take more width on very small screens */
+    }
+    .back-btn {
+        padding: 8px 20px;
+        font-size: 0.9rem;
+    }
 }

@@ -1,9 +1,6 @@
-
-
 import React, { createContext, useState, useEffect } from "react";
 import { BeatLoader } from "react-spinners";
 import "./ShopContext.css"; // Import the CSS for loader styling
-// ...existing code...
 export const ShopContext = createContext(null);
 
 const getDefaultCart = (products) => {

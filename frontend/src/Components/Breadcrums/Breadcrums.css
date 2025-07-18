@@ -1,20 +1,71 @@
+/* Breadcrums.css */
+
+/* Universal box-sizing for easier layout calculations */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
 .breadcrum {
-  font-size: 16px;
-  font-weight: 600;
-  color: #555;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 40px 70px;
-  background-color: #f9f9f9;
-  /* border-bottom: 1px solid #eee; */
-  /* flex-wrap: wrap; */
-  text-transform: capitalize;
+    font-size: 16px;
+    font-weight: 600;
+    color: #555;
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between text and arrows */
+    padding: 40px 70px; /* Desktop padding */
+    background-color: #f9f9f9;
+    flex-wrap: wrap; /* Allow items to wrap to the next line on small screens */
+    text-transform: capitalize;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Subtle shadow */
+    font-family: "Inter", sans-serif; /* Consistent font family */
 }
 
 .breadcrum img {
-  width: 14px;
-  height: 14px;
-  margin: 0 4px;
-  opacity: 0.6;
+    width: 14px;
+    height: 14px;
+    margin: 0; /* Remove default margin from image */
+    opacity: 0.6;
+    flex-shrink: 0; /* Prevent image from shrinking */
+}
+
+/* Responsive adjustments */
+
+/* For screens up to 1024px (tablets & smaller laptops) */
+@media (max-width: 1024px) {
+    .breadcrum {
+        font-size: 15px;
+        gap: 8px;
+        padding: 30px 40px; /* Adjust padding */
+    }
+    .breadcrum img {
+        width: 13px;
+        height: 13px;
+    }
+}
+
+/* For screens up to 768px (larger phones) */
+@media (max-width: 768px) {
+    .breadcrum {
+        font-size: 14px;
+        gap: 6px;
+        padding: 20px 25px; /* Further adjust padding */
+    }
+    .breadcrum img {
+        width: 12px;
+        height: 12px;
+    }
+}
+
+/* For screens up to 500px (mobile phones) */
+@media (max-width: 500px) {
+    .breadcrum {
+        font-size: 13px;
+        gap: 5px;
+        padding: 15px 15px; /* Even smaller padding */
+        justify-content: flex-start; /* Align items to the start when wrapped */
+    }
+    .breadcrum img {
+        width: 10px;
+        height: 10px;
+    }
 }

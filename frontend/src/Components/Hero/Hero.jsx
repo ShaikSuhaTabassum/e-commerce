@@ -1,7 +1,7 @@
 import React from 'react'
 import './Hero.css'
-import { FaArrowRight } from 'react-icons/fa';
-import { IoMdArrowDown } from "react-icons/io";
+// import { FaArrowRight } from 'react-icons/fa';
+// import { IoMdArrowDown } from "react-icons/io";
 
 
 const Hero = () => {
@@ -26,9 +26,9 @@ const Hero = () => {
 {/* <div className='arrow-down'>
 <IoMdArrowDown fontSize="20px"/>
 </div> */}
-<div className="bounce-wrapper">
-  <span className="bounce-icon"><IoMdArrowDown fontSize="20px"/></span>
-</div>
+{/* <div className="bounce-wrapper">
+  <span className="bounce-icon"><IoMdArrowDown fontSize="40px"/></span>
+</div> */}
         </div>
 
         <div className="hero-right">

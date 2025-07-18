@@ -1,237 +1,253 @@
-.footer {
-  background: linear-gradient(135deg, #fce3ec, #ffe5f7);
-  padding: 40px 60px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-top-left-radius: 40px;
-  border-top-right-radius: 40px;
-  box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.1);
-  font-family: 'Segoe UI', sans-serif;
-  color: #333;
+/* Footer.css */
 
+/* Universal box-sizing for easier layout calculations */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+.footer {
+    background: linear-gradient(135deg, #fce3ec, #ffe5f7);
+    padding: 40px 20px; /* Adjusted padding for better responsiveness */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.1);
+    font-family: "Inter", sans-serif; /* Consistent font family */
+    color: #333;
+    gap: 25px; /* Space between main sections (logo, links, social, copyright) */
+    width: 100%; /* Ensure it takes full width */
+    min-height: auto; /* Allow height to adjust based on content */
 }
 
 .footer-logo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 15px; /* Adjusted margin */
 }
 
 .footer-logo img {
-  width: 100px;
-  margin-bottom: 10px;
+    width: 100px;
+    height: auto; /* Maintain aspect ratio */
+    margin-bottom: 10px;
 }
 
 .footer-logo p {
-  font-size: 24px;
-  font-weight: 700;
-  color: #d63384;
+    font-size: 24px;
+    font-weight: 700;
+    color: #d63384;
+    text-align: center; /* Ensure text is centered */
 }
 
 .footer-links {
-  display: flex;
-  gap: 25px;
-  font-size: 16px;
-  font-weight: 100;
-  list-style: none;
-  padding: 0;
-  margin-bottom: 25px;
-  flex-wrap: wrap;
-  justify-content: center;
+    display: flex;
+    gap: 25px;
+    font-size: 16px;
+    font-weight: 500; /* Slightly bolder for better readability */
+    list-style: none;
+    padding: 0;
+    margin-bottom: 20px; /* Adjusted margin */
+    flex-wrap: wrap; /* Allow links to wrap to the next line */
+    justify-content: center; /* Center links when wrapped */
+    text-align: center; /* Ensure link text is centered if wrapped */
 }
 
 .footer-links li {
-  font-size: 16px;
-  cursor: pointer;
-  transition: color 0.3s ease;
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .footer-links li:hover {
-  color: #e91e63;
-  text-decoration: underline;
+    color: #e91e63;
+    transform: translateY(-2px); /* Subtle lift effect */
 }
 
 .footer-social-icon {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-  margin-bottom: 20px;
-  flex-wrap: wrap;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap; /* Allow icons to wrap */
 }
 
 .footer-icons-containner {
-  background: white;
-  padding: 12px;
-  border-radius: 50%;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
+    background: white;
+    padding: 12px;
+    border-radius: 50%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    display: flex; /* Use flex to center icon/image */
+    justify-content: center;
+    align-items: center;
 }
 
 .footer-icons-containner img {
-  width: 24px;
-  height: 24px;
+    width: 24px;
+    height: 24px;
+    display: block; /* Remove extra space below image */
+}
+
+/* Styling for the LinkedIn icon (FaLinkedin) */
+.footer-icons-containner.linkedin-icon-container svg {
+    width: 24px; /* Match size of image icons */
+    height: 24px; /* Match size of image icons */
+    color: #0A66C2; /* LinkedIn brand color */
 }
 
 .footer-icons-containner:hover {
-  transform: scale(1.1);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+    transform: scale(1.1);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
 }
 
 .footer-cpyright {
-  text-align: center;
-  width: 100%;
-  margin-top: 20px;
+    text-align: center;
+    width: 100%;
+    margin-top: 10px; /* Adjusted margin-top */
+    padding-top: 20px; /* Add padding above the hr for separation */
 }
 
 .footer-cpyright hr {
-  width: 80%;
-  border: none;
-  border-radius: 10px;
-  height: 3px;
-  background-color: #ddd;
+    width: 80%;
+    max-width: 400px; /* Limit max width for hr */
+    border: none;
+    border-radius: 10px;
+    height: 3px;
+    background-color: #ddd;
+    margin: 0 auto 15px auto; /* Center hr and add bottom margin */
 }
 
 .footer-cpyright p {
-  font-size: 14px;
-  color: #777;
+    font-size: 14px;
+    color: #777;
+    line-height: 1.5; /* Improve readability */
 }
+
+/* Responsive adjustments */
 
 /* 1280px (large desktops or laptops) */
 @media (max-width: 1280px) {
-  .footer {
-    padding: 35px 50px;
-  }
-
-  .footer-logo img {
-    width: 90px;
-  }
-
-  .footer-logo p {
-    font-size: 22px;
-  }
-
-  .footer-links {
-    gap: 22px;
-    font-size: 15px;
-  }
-
-  .footer-icons-containner img {
-    width: 22px;
-    height: 22px;
-  }
+    .footer {
+        padding: 35px 15px; /* Adjust padding */
+        gap: 20px; /* Adjust gap */
+    }
+    .footer-logo img {
+        width: 90px;
+    }
+    .footer-logo p {
+        font-size: 22px;
+    }
+    .footer-links {
+        gap: 20px;
+        font-size: 15px;
+    }
+    .footer-icons-containner {
+        padding: 10px;
+    }
+    .footer-icons-containner img,
+    .footer-icons-containner.linkedin-icon-container svg {
+        width: 22px;
+        height: 22px;
+    }
 }
 
 /* 1024px (tablets & smaller laptops) */
 @media (max-width: 1024px) {
-  .footer {
-    padding: 30px 40px;
-  }
-
-  .footer-logo img {
-    width: 80px;
-  }
-
-  .footer-logo p {
-    font-size: 20px;
-  }
-
-  .footer-links {
-    gap: 20px;
-    font-size: 15px;
-  }
-
-  .footer-icons-containner {
-    padding: 10px;
-  }
-
-  .footer-icons-containner img {
-    width: 20px;
-    height: 20px;
-  }
+    .footer {
+        padding: 30px 10px;
+        gap: 18px;
+    }
+    .footer-logo img {
+        width: 80px;
+    }
+    .footer-logo p {
+        font-size: 20px;
+    }
+    .footer-links {
+        gap: 18px;
+        font-size: 14px;
+    }
+    .footer-icons-containner {
+        padding: 9px;
+    }
+    .footer-icons-containner img,
+    .footer-icons-containner.linkedin-icon-container svg {
+        width: 20px;
+        height: 20px;
+    }
 }
 
 /* 800px (small tablets) */
 @media (max-width: 800px) {
-  .footer {
-    padding: 28px 30px;
-  }
-
-  .footer-logo img {
-    width: 70px;
-  }
-
-  .footer-logo p {
-    font-size: 18px;
-  }
-
-  .footer-links {
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 16px;
-    font-size: 14px;
-  }
-
-  .footer-icons-containner {
-    padding: 9px;
-  }
-
-  .footer-icons-containner img {
-    width: 18px;
-    height: 18px;
-  }
-
-  .footer-cpyright p {
-    font-size: 13px;
-  }
+    .footer {
+        padding: 25px 10px;
+        gap: 15px;
+    }
+    .footer-logo img {
+        width: 70px;
+    }
+    .footer-logo p {
+        font-size: 18px;
+    }
+    .footer-links {
+        gap: 14px;
+        font-size: 13px;
+        flex-direction: row; /* Keep row for now, let flex-wrap handle it */
+    }
+    .footer-icons-containner {
+        padding: 8px;
+    }
+    .footer-icons-containner img,
+    .footer-icons-containner.linkedin-icon-container svg {
+        width: 18px;
+        height: 18px;
+    }
+    .footer-cpyright p {
+        font-size: 12px;
+    }
+    .footer-cpyright hr {
+        width: 90%; /* Make hr wider on smaller screens */
+        max-width: 300px;
+    }
 }
 
 /* 500px (phones) */
 @media (max-width: 500px) {
-  .footer {
-    padding: 24px 20px;
-    text-align: center;
-  }
-
-  .footer-logo img {
-    width: 60px;
-  }
-
-  .footer-logo p {
-    font-size: 16px;
-  }
-
-  .footer-links {
-    flex-direction: column;
-    gap: 10px;
-    margin-bottom: 20px;
-  }
-
-  .footer-links li {
-    font-size: 13px;
-  }
-
-  .footer-social-icon {
-    gap: 12px;
-    margin-bottom: 16px;
-  }
-
-  .footer-icons-containner {
-    padding: 8px;
-  }
-
-  .footer-icons-containner img {
-    width: 16px;
-    height: 16px;
-  }
-
-  .footer-cpyright hr {
-    width: 90%;
-  }
-
-  .footer-cpyright p {
-    font-size: 12px;
-  }
+    .footer {
+        padding: 20px 10px;
+        gap: 12px;
+    }
+    .footer-logo img {
+        width: 60px;
+    }
+    .footer-logo p {
+        font-size: 16px;
+    }
+    .footer-links {
+        flex-direction: column; /* Stack links vertically on very small screens */
+        gap: 8px;
+        margin-bottom: 15px;
+        font-size: 12px;
+    }
+    .footer-social-icon {
+        gap: 10px;
+        margin-bottom: 15px;
+    }
+    .footer-icons-containner {
+        padding: 7px;
+    }
+    .footer-icons-containner img,
+    .footer-icons-containner.linkedin-icon-container svg {
+        width: 16px;
+        height: 16px;
+    }
+    .footer-cpyright hr {
+        width: 95%;
+        max-width: 250px;
+    }
+    .footer-cpyright p {
+        font-size: 11px;
+    }
 }

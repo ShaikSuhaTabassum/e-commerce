@@ -1,58 +1,162 @@
+/* RelatedProducts.css */
+
+/* Universal box-sizing for easier layout calculations */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
 .relatedproducts {
-  width: 100%;
-  padding: 40px 60px;
-  background-color: #fdfdfd;
-  text-align: center;
+    width: 100%;
+    padding: 40px 60px; /* Desktop padding */
+    background-color: #fdfdfd;
+    text-align: center;
+    font-family: 'Inter', sans-serif; /* Consistent font family */
+    max-width: 1400px; /* Limit overall width */
+    margin: 0 auto; /* Center the component */
 }
 
 .relatedproducts h1 {
-  font-size: 2rem;
-  font-weight: 600;
-  color: #333;
-  margin-bottom: 10px;
+    font-size: 2rem; /* Using rem for scalability */
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+    line-height: 1.2;
 }
 
 .relatedproducts hr {
-  width: 80px;
-  height: 4px;
-  background: #ff4c61;
-  border: none;
-  margin: 10px auto 30px;
-  border-radius: 2px;
+    width: 80px;
+    height: 4px;
+    background: #ff4c61;
+    border: none;
+    margin: 10px auto 30px; /* Center and add bottom margin */
+    border-radius: 2px;
 }
 
 .relatedproducts-item {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 30px;
-  justify-content: center;
-  align-items: stretch;
+    display: grid;
+    /* Explicitly set 4 columns for desktop to ensure no gaps after 4 items */
+    grid-template-columns: repeat(4, 1fr); /* Force 4 equal columns */
+    gap: 30px; /* Space between grid items */
+    justify-content: center; /* Center items within the grid container */
+    align-items: stretch; /* Ensure items stretch to fill height */
 }
 
-@media (max-width: 768px) {
-  .relatedproducts {
-    padding: 20px 30px;
-  }
-
-  .relatedproducts h1 {
-    font-size: 1.6rem;
-  }
-
-  .relatedproducts-item {
-    gap: 20px;
-  }
+/* Item component basic styling (assuming it's a separate component) */
+.item {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content within each item */
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease;
 }
 
+.item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+}
+
+.item img {
+    width: 100%;
+    height: auto; /* Maintain aspect ratio */
+    object-fit: cover;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+
+.item p {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 5px;
+    text-align: center; /* Center product name */
+}
+
+.item-prices {
+    display: flex;
+    gap: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    justify-content: center; /* Center prices */
+}
+
+.item-price-new {
+    color: #e91e63;
+}
+
+.item-price-old {
+    color: #888;
+    text-decoration: line-through;
+}
+
+
+/* ===================== Responsive Adjustments ===================== */
+
+/* For screens up to 1024px (tablets & smaller laptops) */
+@media (max-width: 1024px) {
+    .relatedproducts {
+        padding: 30px 40px;
+    }
+    .relatedproducts h1 {
+        font-size: 1.8rem;
+    }
+    .relatedproducts hr {
+        width: 70px;
+        height: 3px;
+        margin-bottom: 25px;
+    }
+    .relatedproducts-item {
+        /* On smaller laptops/tablets, allow 3 columns if space, or 2 if narrower */
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* Adjust minmax */
+        gap: 25px;
+    }
+}
+
+/* For screens up to 768px (tablets in portrait, larger phones) */
 @media (max-width: 768px) {
-  .relatedproducts {
-    padding: 20px 30px;
-  }
+    .relatedproducts {
+        padding: 25px 20px;
+    }
+    .relatedproducts h1 {
+        font-size: 1.6rem;
+    }
+    .relatedproducts hr {
+        width: 60px;
+        height: 3px;
+        margin-bottom: 20px;
+    }
+    .relatedproducts-item {
+        gap: 20px;
+        /* Ensure 2 columns on these screens */
+        grid-template-columns: repeat(2, 1fr); /* Force 2 columns */
+    }
+}
 
-  .relatedproducts h1 {
-    font-size: 1.6rem;
-  }
-
-  .relatedproducts-item {
-    gap: 20px;
-  }
+/* For screens up to 500px (mobile phones) */
+@media (max-width: 500px) {
+    .relatedproducts {
+        padding: 20px 15px;
+    }
+    .relatedproducts h1 {
+        font-size: 1.4rem;
+    }
+    .relatedproducts hr {
+        width: 50px;
+        height: 2px;
+        margin-bottom: 15px;
+    }
+    .relatedproducts-item {
+        gap: 15px;
+        /* Keep 2 columns on very small screens, adjust minmax if necessary */
+        grid-template-columns: repeat(2, 1fr); /* Explicitly keep 2 columns */
+    }
+    .item p {
+        font-size: 0.9rem; /* Smaller font for item name */
+    }
+    .item-prices {
+        font-size: 1rem; /* Smaller font for prices */
+    }
 }

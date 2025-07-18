@@ -1,155 +1,175 @@
-.offers {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 30px 60px;
-  margin-top: 120px;
-  background: linear-gradient(to right, #ffe3ec, #f8bbd0);
-  border-radius: 10px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-  gap: 50px;
-  border: 2px solid gray;
-  position: relative;
-  z-index: 1;
-  flex-wrap: wrap;
+/* Offers.css */
+
+/* Universal box-sizing for easier layout calculations */
+*, *::before, *::after {
+    box-sizing: border-box;
 }
 
-/* Left Section */
+.offers {
+    display: flex; /* Arrange children in a row by default */
+    margin: 80px auto; /* Center the component with vertical margin */
+    padding: 30px 0; /* Vertical padding */
+    width: 80%; /* Occupy 80% of the parent width */
+    min-height: 10vh; /* Set a minimum height, allows it to grow */
+    background: linear-gradient(180deg, #fde1ff 0%, #e1ffea22 60%); /* Gradient background */
+    border-radius: 10px; /* Rounded corners for the container */
+    align-items: center; /* Vertically align items in the center */
+    justify-content: space-around; /* Distribute space around items */
+    font-family: "Inter", sans-serif; /* Set font family */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    gap: 10px; /* Add a gap between flex items */
+}
+
 .offers-left {
-  flex: 1;
-  min-width: 300px;
+    flex: 1; /* Allow left section to grow and shrink */
+    display: flex; /* Use flexbox for its children */
+    flex-direction: column; /* Stack children vertically */
+    justify-content: center; /* Center content vertically */
+    align-items: flex-start; /* Align content to the start (left) */
+    padding-left: 50px; /* Padding on the left side */
+    min-width: 280px; /* Ensure a minimum width for content */
 }
 
 .offers-left h2 {
-  font-size: 2.8rem;
-  font-weight: bold;
-  color: #880e4f;
-  margin-bottom: 10px;
+    color: #171717; /* Dark color for heading */
+    font-size: 40px; /* Large font size for heading */
+    font-weight: 400; /* Semi-bold font weight */
+    margin-bottom: 10px; /* Space below heading */
+    line-height: 1.2; /* Improve readability */
 }
 
 .offers-left p {
-  font-size: 1.2rem;
-  color: #444;
-  margin-bottom: 25px;
+    color: #171717; /* Dark color for paragraph */
+    font-size: 30px; /* Font size for paragraph */
+    font-weight: 600; /* Semi-bold font weight */
+    margin-bottom: 30px; /* Space below paragraph */
 }
 
 .offers-left button {
-  padding: 12px 30px;
-  background-color: #ec407a;
-  border: none;
-  border-radius: 30px;
-  color: white;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
+    width: 200px; /* Fixed width for the button */
+    height: 60px; /* Fixed height for the button */
+    border-radius: 30px; /* Highly rounded corners for button */
+    background: #ff4141; /* Red background color */
+    color: white; /* White text color */
+    font-size: 20px; /* Font size for button text */
+    font-weight: 500; /* Medium font weight */
+    border: none; /* No border */
+    outline: none; /* No outline on focus */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background 0.3s ease; /* Smooth transition for background on hover */
+    box-shadow: 0 4px 8px rgba(255, 65, 65, 0.3); /* Red shadow for button */
 }
 
 .offers-left button:hover {
-  background-color: #d81b60;
-  transform: scale(1.05);
+    background: #e03a3a; /* Slightly darker red on hover */
 }
 
-/* Right Section */
 .offers-right {
-  flex: 1;
-  text-align: center;
-  min-width: 300px;
+    flex: 1; /* Allow right section to grow and shrink */
+    display: flex; /* Use flexbox for its children */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    min-width: 200px; /* Ensure a minimum width for the image container */
 }
 
 .offers-right img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 16px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    width: 350px; /* Set a specific width for larger screens */
+    max-width: 100%; /* Ensure image scales down within its container */
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* Remove extra space below image */
+    border-radius: 8px; /* Slightly rounded corners for the image */
 }
 
-/* --- Responsive Design --- */
+/* Responsive adjustments for smaller screens */
+@media (max-width: 1200px) {
+    .offers {
+        width: 90%; /* Increase width for slightly smaller screens */
+        min-height: auto; /* Allow height to adjust based on content */
+        flex-direction: column; /* Stack items vertically */
+        padding: 40px 20px; /* Adjust padding */
+        text-align: center; /* Center text for the entire component when stacked */
+    }
 
-/* Large Tablets & Small Desktops */
-@media (max-width: 1024px) {
-  .offers {
-    padding: 30px 40px;
-    margin-top: 80px;
-    gap: 40px;
-  }
+    .offers-left {
+        padding-left: 0; /* Remove left padding */
+        align-items: center; /* Center content horizontally */
+        margin-bottom: 30px; /* Space below the left section */
+    }
 
-  .offers-left h2 {
-    font-size: 2rem;
-  }
+    .offers-left h2 {
+        font-size: 40px; /* Adjust font size for smaller screens */
+    }
 
-  .offers-left p {
-    font-size: 1rem;
-  }
+    .offers-left p {
+        font-size: 18px; /* Adjust font size for smaller screens */
+    }
 
-  .offers-left button {
-    width: 180px;
-    height: 45px;
-    font-size: 0.9rem;
-  }
+    .offers-left button {
+        width: 180px; /* Adjust button width */
+        height: 50px; /* Adjust button height */
+        font-size: 18px; /* Adjust button font size */
+    }
 
-  .offers-right img {
-    width: 250px;
-  }
+    .offers-right {
+        margin-top: 0; /* Remove top margin as it's now part of column layout */
+    }
+
+    .offers-right img {
+        width: 70%; /* Adjusted image width for tablets */
+        max-width: 300px; /* Ensure it doesn't get too big on larger tablets */
+    }
 }
 
-/* Tablets */
 @media (max-width: 768px) {
-  .offers {
-    flex-direction: column;
-    text-align: center;
-    padding: 30px 20px;
-  }
+    .offers {
+        margin: 50px auto; /* Adjust margin */
+        padding: 30px 15px; /* Further adjust padding */
+        gap: 15px; /* Reduce gap */
+    }
 
-  .offers-left, .offers-right {
-    flex: unset;
-    width: 100%;
-  }
+    .offers-left h2 {
+        font-size: 30px; /* Smaller font size for mobile */
+    }
 
-  .offers-left h2 {
-    font-size: 1.8rem;
-  }
+    .offers-left p {
+        font-size: 16px; /* Smaller font size for mobile */
+    }
 
-  .offers-left p {
-    font-size: 1rem;
-  }
+    .offers-left button {
+        width: 160px; /* Smaller button for mobile */
+        height: 45px; /* Smaller button for mobile */
+        font-size: 16px; /* Smaller button font size */
+    }
 
-  .offers-left button {
-    width: 160px;
-    height: 40px;
-    font-size: 0.9rem;
-  }
-
-  .offers-right img {
-    width: 220px;
-    margin-top: 20px;
-  }
+    .offers-right img {
+        width: 80%; /* Adjusted image width for mobile */
+        max-width: 250px; /* Ensure it doesn't get too big on larger phones */
+    }
 }
 
-/* Phones */
-@media (max-width: 500px) {
-  .offers {
-    padding: 20px;
-    margin-top: 60px;
-    gap: 20px;
-  }
+@media (max-width: 480px) {
+    .offers {
+        margin: 30px auto; /* Even smaller margin */
+        padding: 20px 10px; /* Even smaller padding */
+        gap: 10px; /* Further reduce gap */
+    }
 
-  .offers-left h2 {
-    font-size: 1.2rem;
-  }
+    .offers-left h2 {
+        font-size: 24px; /* Smallest font size for very small screens */
+    }
 
-  .offers-left p {
-    font-size: 0.8rem;
-  }
+    .offers-left p {
+        font-size: 14px; /* Smallest font size for very small screens */
+    }
 
-  .offers-left button {
-    width: 120px;
-    height: 32px;
-    font-size: 0.75rem;
-    margin-top: 12px;
-  }
+    .offers-left button {
+        width: 140px; /* Smallest button for very small screens */
+        height: 40px; /* Smallest button for very small screens */
+        font-size: 14px; /* Smallest button font size */
+    }
 
-  .offers-right img {
-    width: 140px;
-  }
+    .offers-right img {
+        width: 90%; /* Adjusted image width for very small screens */
+        max-width: 200px; /* Ensure it doesn't get too big on smallest phones */
+    }
 }
