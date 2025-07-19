@@ -65,7 +65,16 @@ const CartItems = () => {
           return (
             <div key={e.id}>
               <div className="cartitems-format">
-                <img src={e.image} alt="" className="carticon-product-icon" />
+                {/* <img src={e.image} alt="" className="carticon-product-icon" /> */}
+                <img
+  src={
+    e.image.includes("localhost")
+      ? e.image.replace("http://localhost:4000", "https://e-commerce-prt4.onrender.com")
+      : e.image
+  }
+  alt={e.name} 
+  className="carticon-product-icon"
+/>
                 <p>{e.name}</p>
                 <p>${e.new_price}</p>
                 <button className="cartitems-quantity">{cartItems[e.id]}</button>
