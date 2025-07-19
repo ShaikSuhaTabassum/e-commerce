@@ -2,6 +2,8 @@ import React from 'react'
 import './AddProduct.css';
 import upload_area from '../../assests/upload_area.svg'
 import { useState } from 'react';
+import Navbar from '../Navbar/Navbar';
+import Sidebar from '../Sidebar/Sidebar';
 // import { data } from 'react-router-dom';
 
 const AddProduct = () => {
@@ -54,6 +56,10 @@ const AddProduct = () => {
         }
     }
   return (
+    <>
+    <Navbar/>
+    <div className='addproduct-main'>
+    <Sidebar/>
     <div className='addproduct'>
       <div className="addproduct-itemfield">
         <p> Product title</p>
@@ -86,6 +92,10 @@ const AddProduct = () => {
 
       <button onClick={() => {Add_Product()}}className='addproduct-btn'> ADD</button>
     </div>
+    </div>
+    
+    </>
+    
   )
 }
 

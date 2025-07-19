@@ -71,3 +71,9 @@
     height: 20px;
   }
 }
+.sidebar-listproduct
+{
+  display: flex;
+  justify-content: space-between;
+  
+}
